@@ -53,6 +53,16 @@ module.exports.getPetById = function getPetById (req, res, next, petId) {
     });
 };
 
+module.exports.petGET = function petGET (req, res, next) {
+  Pet.petGET()
+    .then(function (response) {
+      utils.writeJson(res, response);
+    })
+    .catch(function (response) {
+      utils.writeJson(res, response);
+    });
+};
+
 module.exports.updatePet = function updatePet (req, res, next, body) {
   Pet.updatePet(body)
     .then(function (response) {

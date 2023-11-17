@@ -169,7 +169,18 @@ exports.getPetById = function(petId) {
 
 
 /**
- * Updated a pet
+ *
+ * no response value expected for this operation
+ **/
+exports.petGET = function() {
+  return new Promise(function(resolve, reject) {
+    resolve();
+  });
+}
+
+
+/**
+ * This works
  *
  * body Pet Pet object that needs to be added to the store
  * no response value expected for this operation

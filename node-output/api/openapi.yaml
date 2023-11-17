@@ -35,10 +35,15 @@ tags:
     url: http://swagger.io
 paths:
   /pet:
+    get:
+      tags:
+      - pet
+      operationId: petGET
+      x-swagger-router-controller: Pet
     put:
       tags:
       - pet
-      summary: Updated a pet
+      summary: This works
       operationId: updatePet
       requestBody:
         $ref: '#/components/requestBodies/Pet'
@@ -53,6 +58,7 @@ paths:
       - petstore_auth:
         - write:pets
         - read:pets
+      x-showOnlyTo: -basicAuth
       x-swagger-router-controller: Pet
     post:
       tags:
@@ -409,6 +415,8 @@ paths:
               $ref: '#/components/schemas/User'
         required: true
       responses:
+        "200":
+          description: Success
         default:
           description: successful operation
       x-swagger-router-controller: User
@@ -433,6 +441,8 @@ paths:
       requestBody:
         $ref: '#/components/requestBodies/UserArray'
       responses:
+        "200":
+          description: success!
         default:
           description: successful operation
       x-swagger-router-controller: User
