@@ -429,6 +429,8 @@ paths:
       requestBody:
         $ref: '#/components/requestBodies/UserArray'
       responses:
+        "200":
+          description: Succsses
         default:
           description: successful operation
       x-swagger-router-controller: User
