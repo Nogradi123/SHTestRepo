@@ -1,166 +1,160 @@
 {
   "openapi" : "3.0.0",
   "info" : {
-    "title" : "Simple Inventory API",
-    "description" : "This is a simple",
+    "version" : "1.0.0-oas3",
+    "title" : "Product Apis",
+    "description" : "API for Managing products",
     "contact" : {
-      "email" : "you@your-company.com"
-    },
-    "license" : {
-      "name" : "Apache 2.0",
-      "url" : "http://www.apache.org/licenses/LICENSE-2.0.html"
-    },
-    "version" : "1.0.0"
+      "name" : "API Support",
+      "email" : "TestUser@gmail.com"
+    }
   },
-  "servers" : [ {
-    "url" : "https://virtserver.swaggerhub.com/NicksDemoOrg/Simple/1.0.0",
-    "description" : "SwaggerHub API Auto Mocking"
-  } ],
-  "tags" : [ {
-    "name" : "admins",
-    "description" : "Secured Admin-only calls"
-  }, {
-    "name" : "developers",
-    "description" : "Operations available to regular developers"
-  } ],
+  "securityDefinitions" : { },
+  "consumes" : [ "application/json" ],
+  "produces" : [ "application/json" ],
   "paths" : {
-    "/inventory" : {
+    "/product/{id}" : {
       "get" : {
-        "tags" : [ "developers" ],
-        "summary" : "searches inventory",
-        "description" : "By passing in the appropriate options, you can search for\navailable inventory in the system\n",
-        "operationId" : "searchInventory",
+        "tags" : [ "Products" ],
+        "description" : "Retieve products by ID",
         "parameters" : [ {
-          "name" : "searchString",
-          "in" : "query",
-          "description" : "pass an optional search string for looking up inventory",
-          "required" : false,
-          "style" : "form",
-          "explode" : true,
-          "schema" : {
-            "type" : "string"
+          "name" : "id",
+          "in" : "path",
+          "required" : true
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK"
+          },
+          "404" : {
+            "description" : "Not Found"
+          },
+          "500" : {
+            "description" : "Internal Server Error"
           }
+        }
+      },
+      "put" : {
+        "description" : "",
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
         }, {
-          "name" : "skip",
-          "in" : "query",
-          "description" : "number of records to skip for pagination",
-          "required" : false,
-          "style" : "form",
-          "explode" : true,
+          "name" : "body",
+          "in" : "body",
           "schema" : {
-            "minimum" : 0,
-            "type" : "integer",
-            "format" : "int32"
-          }
-        }, {
-          "name" : "limit",
-          "in" : "query",
-          "description" : "maximum number of records to return",
-          "required" : false,
-          "style" : "form",
-          "explode" : true,
-          "schema" : {
-            "maximum" : 50,
-            "minimum" : 0,
-            "type" : "integer",
-            "format" : "int32"
+            "type" : "object",
+            "properties" : {
+              "type" : {
+                "example" : "any"
+              },
+              "name" : {
+                "example" : "any"
+              },
+              "version" : {
+                "example" : "any"
+              }
+            }
           }
         } ],
         "responses" : {
           "200" : {
-            "description" : "search results matching criteria",
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "type" : "array",
-                  "items" : {
-                    "$ref" : "#/components/schemas/InventoryItem"
-                  }
-                }
-              }
-            }
+            "description" : "OK"
           },
-          "400" : {
-            "description" : "bad input parameter"
+          "404" : {
+            "description" : "Not Found"
+          },
+          "500" : {
+            "description" : "Internal Server Error"
           }
         }
       },
+      "delete" : {
+        "description" : "",
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK"
+          },
+          "404" : {
+            "description" : "Not Found"
+          },
+          "500" : {
+            "description" : "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/product" : {
+      "get" : {
+        "tags" : [ "Products" ],
+        "description" : "Retrieve All products",
+        "parameters" : [ {
+          "name" : "limit",
+          "in" : "query",
+          "descritpion" : "Limit the number of products that will be displayed!!!!!!",
+          "required" : false,
+          "type" : "number"
+        }, {
+          "name" : "skip",
+          "in" : "query",
+          "descritpion" : "Skip the number of products displayed",
+          "required" : false,
+          "type" : "number"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK"
+          },
+          "500" : {
+            "description" : "Internal Server Error"
+          }
+        },
+        "autoQuery" : false
+      },
       "post" : {
-        "tags" : [ "developers" ],
-        "summary" : "adds an inventory item",
-        "description" : "Adds an item to the system",
-        "operationId" : "addInventory",
-        "requestBody" : {
-          "description" : "Inventory item to add",
-          "content" : {
-            "application/json" : {
-              "schema" : {
-                "$ref" : "#/components/schemas/InventoryItem"
+        "description" : "",
+        "parameters" : [ {
+          "name" : "body",
+          "in" : "body",
+          "schema" : {
+            "type" : "object",
+            "properties" : {
+              "type" : {
+                "example" : "any"
+              },
+              "name" : {
+                "example" : "any"
+              },
+              "version" : {
+                "example" : "any"
               }
             }
           }
-        },
+        } ],
         "responses" : {
-          "200" : {
-            "description" : "success"
-          },
           "201" : {
-            "description" : "item created"
+            "description" : "Created"
           },
-          "400" : {
-            "description" : "invalid input, object invalid"
-          },
-          "409" : {
-            "description" : "an existing item already exists"
+          "500" : {
+            "description" : "Internal Server Error"
           }
         }
       }
     }
   },
-  "components" : {
-    "schemas" : {
-      "InventoryItem" : {
-        "required" : [ "id", "manufacturer", "name", "releaseDate" ],
-        "type" : "object",
-        "properties" : {
-          "id" : {
-            "type" : "string",
-            "format" : "uuid",
-            "example" : "d290f1ee-6c54-4b01-90e6-d701748f0851"
-          },
-          "name" : {
-            "type" : "string",
-            "example" : "Widget Adapter"
-          },
-          "releaseDate" : {
-            "type" : "string",
-            "format" : "date-time",
-            "example" : "2016-08-29T09:12:33.001Z"
-          },
-          "manufacturer" : {
-            "$ref" : "#/components/schemas/Manufacturer"
-          }
-        }
-      },
-      "Manufacturer" : {
-        "required" : [ "name" ],
-        "type" : "object",
-        "properties" : {
-          "name" : {
-            "type" : "string",
-            "example" : "ACME Corporation"
-          },
-          "homePage" : {
-            "type" : "string",
-            "format" : "url",
-            "example" : "https://www.acme-corp.com"
-          },
-          "phone" : {
-            "type" : "string",
-            "example" : "408-867-5309"
-          }
-        }
-      }
-    }
-  }
+  "host" : "virtserver.swaggerhub.com",
+  "basePath" : "/NicksDemoOrg/product-apis/1.0.0-oas3",
+  "schemes" : [ "https", "http" ],
+  "servers" : [ {
+    "description" : "SwaggerHub API Auto Mocking",
+    "url" : "https://virtserver.swaggerhub.com/NicksDemoOrg/product-apis/1.0.0-oas3"
+  } ]
 }
