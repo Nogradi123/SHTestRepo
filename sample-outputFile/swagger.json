@@ -3,10 +3,10 @@
   "info" : {
     "title" : "PayrollAPI",
     "description" : "# PayrollAPI \n\nWelcome to the **PayrollAPI**. This API allows you to manage employee, product, and order data. Below is a breakdown of the available endpoints and their respective functions.\n\n**Version**: 1.0.0  \n**Base URLs**:\n  - Development: `http://localhost:8081`\n  - Production: `https://payrollservice.onrender.com`\n  - Sample: `https://sample-server.com`\n\n## Tags\n- **Employees**: Manage employee information.\n- **Products**: Manage product data.\n- **Orders**: Manage and process orders.\n",
-    "version" : "1.0.0-xyz"
+    "version" : "1.0.0-abc"
   },
   "servers" : [ {
-    "url" : "https://virtserver.swaggerhub.com/NicksDemoOrg/PayrollAPI/1.0.0-xyz",
+    "url" : "https://virtserver.swaggerhub.com/NicksDemoOrg/PayrollAPI/1.0.0-abc",
     "description" : "SwaggerHub API Auto Mocking"
   }, {
     "url" : "http://localhost:8081"
